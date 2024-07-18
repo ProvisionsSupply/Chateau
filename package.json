@@ -1,12 +1,17 @@
 {
+  "name": "chateau",
+  "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "tw": "npx tailwindcss -i ./src/css/style.css -o ./assets/style.css --watch",
-    "dev": "shopify theme dev"
-  },
-  "devDependencies": {
-    "tailwindcss": "^3.4.3"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "autoprefixer": "^10.4.19"
+    "astro": "^4.12.0",
+    "@astrojs/check": "^0.8.2",
+    "typescript": "^5.5.3"
   }
 }
