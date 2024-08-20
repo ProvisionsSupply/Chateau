@@ -1,0 +1,19 @@
+---
+import { z } from "zod";
+import { ProductResult } from "../utils/schemas";
+import ProductCard from "./ProductCard.astro";
+
+const ProductsResult = z.array(ProductResult);
+export interface Props {
+  products: z.infer<typeof ProductsResult>;
+}
+const { products } = Astro.props as Props;
+---
+
+<section class="bg-light py-12">
+  <div class="container">
+    <div class="grid gap-12 md:grid-cols-2">
+      {products.map((product) => <ProductCard product={product} />)}
+    </div>
+  </div>
+</section>

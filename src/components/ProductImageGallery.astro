@@ -1,0 +1,40 @@
+---
+import { z } from "zod";
+import { ImageResult } from "../utils/schemas";
+import ShopifyImage from "./ShopifyImage.svelte";
+
+const ImagesResult = z.object({
+  nodes: z.array(ImageResult),
+});
+
+export interface Props {
+  images: z.infer<typeof ImagesResult>;
+}
+const { images } = Astro.props as Props;
+---
+
+<div class="w-full">
+  {
+    images.nodes.map((image, index) => {
+      if (index == 0) {
+        return (
+          <div class="overflow-hidden">
+            <ShopifyImage
+              classList="object-cover object-center"
+              loading="eager"
+              image={image}
+              sizes={`
+                  (min-width: 1540px) 475px,
+                  (min-width: 1280px) 389px,
+                  (min-width: 1040px) 304px,
+                  (min-width: 780px) 720px,
+                  (min-width: 680px) 592px,
+                  calc(94.44vw - 31px)
+                `}
+            />
+          </div>
+        );
+      }
+    })
+  }
+</div>

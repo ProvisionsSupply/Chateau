@@ -1,0 +1,39 @@
+---
+import type { z } from "zod";
+import type { ProductResult } from "../utils/schemas";
+
+import ShopifyImage from "./ShopifyImage.svelte";
+import Money from "./Money.svelte";
+
+export interface Props {
+  product: z.infer<typeof ProductResult>;
+}
+const { product } = Astro.props as Props;
+---
+
+<a
+  href={`/products/${product?.handle}`}
+  class="group overflow-hidden"
+>
+  <div class="relative">
+    <ShopifyImage
+      classList=""
+      loading="eager"
+      image={product?.featuredImage}
+      sizes={`
+      (min-width: 1540px) 348px,
+      (min-width: 1280px) 284px,
+      (min-width: 1040px) 309px,
+      (min-width: 780px) 348px,
+      (min-width: 640px) 284px,
+      calc(100vw - 48px)
+    `}
+    />
+  </div>
+  <div class="flex justify-between py-4 text-sm font-mono">
+    <p class="group-hover:underline">{product?.title}</p>
+    <p class="font-bold">
+      <Money price={product?.variants.nodes[0].price} />
+    </p>
+  </div>
+</a>

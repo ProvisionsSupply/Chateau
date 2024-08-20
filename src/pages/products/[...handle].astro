@@ -1,0 +1,70 @@
+---
+import { getProductByHandle } from "./../../utils/shopify";
+import { setCache } from "../../utils/cache";
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import NotFoundLayout from "../../layouts/NotFoundLayout.astro";
+import AddToCartForm from "../../components/AddToCartForm.svelte";
+import ProductImageGallery from "../../components/ProductImageGallery.astro";
+import ProductInformations from "../../components/ProductInformations.astro";
+import VariantSelector from "../../components/product/VariantSelector.astro";
+import ProductImages from "../../components/product/ProductImages.astro";
+
+const { handle } = Astro.params;
+const headers = Astro.request.headers;
+const ip = headers.get("x-vercel-forwarded-for") || Astro.clientAddress;
+const product = await getProductByHandle({ handle: handle || "", buyerIP: ip });
+
+if (!product) {
+  Astro.response.status = 404;
+}
+
+const firstVariant = product?.variants.nodes[0];
+
+setCache.short(Astro);
+
+---
+
+{
+  !product ? (
+    <NotFoundLayout title="Product not found" message="Product not found" />
+  ) : (
+    <BaseLayout title={product.title}>
+      <div class="bg-light py-12">
+        <section class="container flex flex-col gap-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="">
+              <ProductImageGallery images={product.images} />
+            </div>
+
+            <div class="">
+              <ProductInformations
+                title={product.title}
+                description={product.description}
+                price={firstVariant?.price}
+              />
+
+              <div>
+                <VariantSelector 
+                  variants={product?.variants.nodes}
+                />
+                {product?.variants.nodes.map( (variant, index) => (
+                  <AddToCartForm
+                    client:load
+                    index={index}
+                    formClass={(index == 0)? 'active' : ''}
+                    variantId={variant?.id}
+                    variantQuantityAvailable={variant?.quantityAvailable}
+                    variantAvailableForSale={variant?.availableForSale}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+          
+          <ProductImages images={product.images} />
+        </section>
+      </div>
+    </BaseLayout>
+  )
+}
