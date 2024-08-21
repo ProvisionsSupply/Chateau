@@ -71,7 +71,7 @@
             <div class="flex flex-col min-h-full max-h-screen">
               <div class="flex items-start justify-between p-5">
                 <div
-                  class="text-2xl flex gap-4 items-center font-bold text-zinc-800"
+                  class="text-2xl flex gap-4 items-center font-bold text-dark"
                   id="slide-over-title"
                 >
                   Your cart
@@ -102,17 +102,16 @@
                   <button
                     on:click={() => closeCartDrawer()}
                     type="button"
-                    class="-m-2 p-2 text-gray-400 hover:text-gray-500"
+                    class="-m-2 p-2 text-dark hover:opacity-75"
                   >
                     <span class="sr-only">Close panel</span>
                     <!-- Heroicon name: outline/x-mark -->
                     <svg
-                      class="h-6 w-6"
+                      class="h-6 w-6 stroke-dark"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke-width="1.5"
-                      stroke="currentColor"
                       aria-hidden="true"
                     >
                       <path
@@ -196,10 +195,10 @@
                     </ul>
                   {:else}
                     <div class="text-center mt-20">
-                      <p class="text-gray-500">Your cart is empty</p>
+                      <p class="text-dark">Your cart is empty</p>
                       <a
                         href="/"
-                        class="font-semibold text-emerald-900 hover:text-emerald-700"
+                        class="font-semibold text-dark hover:opacity-75"
                       >
                         Continue Shopping
                         <span aria-hidden="true"> &rarr;</span>
