@@ -20,5 +20,5 @@ const { price, title, description } = Astro.props as Props;
 </div>
 
 <div class="mt-4 text-base font-mono text-dark mb-4">
-  {description}
+  <Fragment set:html={description} />
 </div>
