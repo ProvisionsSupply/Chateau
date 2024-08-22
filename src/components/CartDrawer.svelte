@@ -154,6 +154,8 @@
                               {item.merchandise.product.title}
                             </a>
                             <p class="text-xs">
+                              {item.merchandise.title}
+                              <br>
                               <Money price={item.cost.amountPerQuantity} />
                               x
                               {item.quantity}
