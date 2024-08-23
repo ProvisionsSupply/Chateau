@@ -9,7 +9,7 @@ export interface Props {
 }
 
 const defaultDesc =
-  "A lightweight and minimalit Astro starter theme using Shopify with Svelte, Tailwind, and TypeScript.";
+  "Provsions";
 
 const { title, description = defaultDesc } = Astro.props as Props;
 ---
@@ -25,6 +25,7 @@ const { title, description = defaultDesc } = Astro.props as Props;
     <style is:global>
       @import "../styles/global.css";
     </style>
+    <script src='../js/posthog.js'></script>
   </head>
   <body>
     <CartDrawer client:idle />
