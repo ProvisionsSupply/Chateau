@@ -2,11 +2,10 @@
 import { Image } from 'astro:assets';
 import img_1 from '../../img/homepage/000054700001.jpg';
 import img_2 from '../../img/homepage/000054700002.jpg';
-import img_3 from '../../img/homepage/000054700003.jpg';
 ---
 
-<section class="homepage-images">
-  <div class="grid grid-cols-2 relative">
+<section class="homepage-images pb-16 md:pb-12">
+  <div class="px-4 grid grid-cols-2 relative">
     <Image src={img_1} alt='' class='h-[800px] md:h-[1000px] w-full object-cover object-center' />
     <Image src={img_2} alt='' class='h-[800px] md:h-[1000px] w-full object-cover object-center' />
 
@@ -22,7 +21,7 @@ import img_3 from '../../img/homepage/000054700003.jpg';
         </a>
         <a href="/products/01" class="w-fit text-light font-mono hover:opacity-75 hover:underline">
           <div class="border-light border px-4 py-1">
-            01
+            SHOP - GARMENT 01
           </div>
         </a>
       </div>

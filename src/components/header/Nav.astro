@@ -1,0 +1,50 @@
+---
+const isHome = (Astro.url.pathname == '/')? true : false;
+---
+
+<div class="flex" x-data="{ open: false }">
+  <button x-show="!open" @click="open = true">
+    <svg class="h-6 w-auto stroke-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" fill="none">
+      <path d="M3 5L23 5" stroke-width="2" stroke-miterlimit="16" stroke-linecap="round"/>
+      <path d="M3 13L23 13" stroke-width="2" stroke-linecap="round"/>
+      <path d="M3 21L23 21" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <button x-cloak x-show="open" @click="open = false">
+    <svg class="h-6 w-auto stroke-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" fill="none">
+      <path d="M5 21L21 5" stroke-width="2" stroke-miterlimit="16" stroke-linecap="round"/>
+      <path d="M5 5L21 21" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <div 
+    x-transition:enter="transition ease-out duration-100"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-out duration-100"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    x-cloak x-show="open" class="absolute bg-light top-full left-0 h-fit w-full">
+    <div class="container pb-4">
+      <div class="w-full flex gap-4">
+        { !isHome && 
+          <a href="/" class="w-fit text-dark font-mono hover:opacity-75 hover:underline">
+            <div class="border-dark border px-4 py-1 w-fit">
+              HOME 
+            </div>
+          </a>
+        }
+        <a href="/products" class="w-fit text-dark font-mono hover:opacity-75 hover:underline">
+          <div class="border-dark border px-4 py-1 w-fit">
+            SHOP 
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  [x-cloak] { display: none !important; }
+</style>
