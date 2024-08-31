@@ -1,7 +1,30 @@
 ---
-import NotFoundLayout from "../layouts/NotFoundLayout.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import { Image } from 'astro:assets';
+import notFound from '../img/404/404.jpg';
+
+export interface Props {
+  title?: string;
+  message?: string;
+}
 
 Astro.response.status = 404;
+
+const defaultTitle = "Page not found";
+
+const { title = defaultTitle, message = defaultTitle } = Astro.props as Props;
 ---
 
-<NotFoundLayout />
+<BaseLayout title={title}>
+  <div class="container py-12 relative text-light">
+    <Image src={notFound} alt='' class='h-auto w-full object-cover object-center' />
+    <div class="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center gap-2">
+      <div class="flex gap-2 items-center">
+        <h1 class="font-bold italic text-4xl">404</h1>
+        <strong>Resource not found</strong>
+      </div>
+      <a href="/" class="link text-light">Return to the homepage</a>
+    </div>
+  </div>
+</BaseLayout>
