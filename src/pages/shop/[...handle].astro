@@ -19,16 +19,17 @@ if (!product) {
 }
 
 const firstVariant = product?.variants.nodes[0];
+const metaTitle = product?.seo.title?? product.title;
+const metaDes   = product?.seo.description?? 'Chicago Made Clothing';
 
 setCache.short(Astro);
-
 ---
 
 {
   !product ? (
     <div>No product found</div>
   ) : (
-    <BaseLayout title={product.title}>
+    <BaseLayout title={metaTitle} description={metaDes}>
       <div class="bg-light py-12">
         <section class="container flex flex-col gap-8">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
