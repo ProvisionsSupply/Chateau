@@ -5,19 +5,19 @@ export interface Props {
 const { variants } = Astro.props as Props;
 ---
 
-<div class="variant-select flex gap-4 flex-wrap">
+<div class="variant-select flex gap-2 flex-wrap">
   {
     variants.map( ( variant, index )=> {
       if ( index == 0 ) {
         return (
-          <div id=`variant-${index}` class="active p-4 border border-dark font-mono text-xs select-none hover:opacity-75 hover:cursor-pointer [&.active]:bg-dark [&.active]:text-light [&.active]:cursor-default [&.active]:opacity-100">
+          <div id=`variant-${index}` class="active rounded-sm py-2 px-3 font-bold border border-dark text-xs select-none hover:opacity-75 hover:cursor-pointer [&.active]:bg-dark [&.active]:text-light [&.active]:cursor-default [&.active]:opacity-100">
             { variant?.title }
           </div>
         );
       }
 
       return (
-        <div id=`variant-${index}`class="p-4 border border-dark font-mono text-xs select-none hover:opacity-75 hover:cursor-pointer [&.active]:bg-dark [&.active]:text-light [&.active]:cursor-default [&.active]:opacity-100">
+        <div id=`variant-${index}`class="rounded-sm py-2 px-3 font-bold border border-dark text-xs select-none hover:opacity-75 hover:cursor-pointer [&.active]:bg-dark [&.active]:text-light [&.active]:cursor-default [&.active]:opacity-100">
           { variant?.title }
         </div>
       );
@@ -35,6 +35,10 @@ const { variants } = Astro.props as Props;
     variant.addEventListener('click', () => {
       variants.forEach( (target) => {
         target.classList.remove('active');
+
+        if (target.getAttribute('id') == variant.id) {
+          target.classList.add('active');
+        }
       });
 
       formVariants.forEach( (target) => {
@@ -48,5 +52,4 @@ const { variants } = Astro.props as Props;
       variant.classList.add('active');
     });
   });
-
 </script>

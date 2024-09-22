@@ -13,28 +13,69 @@ export interface Props {
 const { images } = Astro.props as Props;
 ---
 
-<div class="w-full">
-  {
-    images.nodes.map((image, index) => {
-      if (index == 0) {
+<div class="swiper">
+  <div class="swiper-wrapper">
+    {
+      images.nodes.map((image) => {
         return (
-          <div class="overflow-hidden">
-            <ShopifyImage
-              classList="object-cover object-center"
-              loading="eager"
-              image={image}
-              sizes={`
-                  (min-width: 1540px) 475px,
-                  (min-width: 1280px) 389px,
-                  (min-width: 1040px) 304px,
-                  (min-width: 780px) 720px,
-                  (min-width: 680px) 592px,
-                  calc(94.44vw - 31px)
-                `}
-            />
+          <div class="swiper-slide w-full">
+            <div class="h-full flex items-center justify-center">
+              <ShopifyImage
+                classList="object-cover object-center w-full h-full"
+                loading="eager"
+                image={image}
+                sizes={`
+                    (min-width: 1540px) 475px,
+                    (min-width: 1280px) 389px,
+                    (min-width: 1040px) 304px,
+                    (min-width: 780px) 720px,
+                    (min-width: 680px) 592px,
+                    calc(94.44vw - 31px)
+                  `}
+              />
+            </div>
           </div>
         );
-      }
-    })
-  }
+      })
+    }
+  </div>
+  <div class="pagination">
+  </div>
 </div>
+
+<script>
+  import Swiper from 'swiper';
+  import { Pagination } from 'swiper/modules';
+  new Swiper('.swiper', {
+    modules: [Pagination],
+    slidesPerView: 3,
+    spaceBetween: 28,
+    loop: true,
+    pagination: {
+      el: ".pagination",
+      bulletClass: "pagination-bullet",
+      bulletActiveClass: "bullet-active",
+      clickable: true,
+    },
+  });
+</script>
+
+<style>
+  .swiper-slide {
+    @apply h-auto;
+  }
+</style>
+
+<style is:global>
+  .pagination {
+    @apply flex gap-2 py-4 items-center justify-center;
+  }
+
+  .pagination-bullet {
+    @apply bg-dark opacity-10 h-2 w-2 hover:cursor-pointer rounded-full;
+  }
+
+  .bullet-active {
+    @apply opacity-100 hover:cursor-default;
+  }
+</style>

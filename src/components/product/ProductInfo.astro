@@ -1,0 +1,151 @@
+---
+import 'swiper/css';
+import { z } from "zod";
+import { ImageResult } from "../../utils/schemas";
+import ShopifyImage from "./../ShopifyImage.svelte";
+import VariantSelector from "../../components/product/VariantSelector.astro";
+import AddToCartForm from "../../components/AddToCartForm.svelte";
+
+const ImagesResult = z.object({
+  nodes: z.array(ImageResult),
+});
+
+export interface Props {
+  images: z.infer<typeof ImagesResult>,
+  products: any,
+  description: string
+}
+const { images, products, description } = Astro.props as Props;
+---
+
+<section class="relative pt-12 pb-0 md:py-12">
+  <div class="container">
+    <div class="relative">
+      <div class="hidden md:flex absolute backdrop-blur-xl h-full top-0 right-0 bg-light/75 w-full md:w-1/2 lg:w-[calc(33.33%-14px)] z-10 flex-col gap-4 p-0 md:p-8 mb-12 md:mb-0">
+        <strong class="hidden md:block">MADE IN OUR CHICAGO STUDIO</strong>
+        <div class="hidden md:block w-full flex-grow overflow-y-scroll">
+          <Fragment set:html={description} />
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold">Size</span>
+          <VariantSelector 
+            variants={products}
+          />
+        </div>
+        {products.map( (variant, index) => (
+          <AddToCartForm
+            client:load
+            index={index}
+            formClass={(index == 0)? 'active' : ''}
+            variantId={variant?.id}
+            variantQuantityAvailable={variant?.quantityAvailable}
+            variantAvailableForSale={variant?.availableForSale}
+          />
+        ))}
+      </div>
+
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          {
+            images.nodes.map((image) => {
+              return (
+                <div class="swiper-slide w-full">
+                  <div class="h-full flex items-center justify-center">
+                    <ShopifyImage
+                      classList="object-cover object-center w-full h-full"
+                      loading="eager"
+                      image={image}
+                      sizes={`
+                          (min-width: 1540px) 475px,
+                          (min-width: 1280px) 389px,
+                          (min-width: 1040px) 304px,
+                          (min-width: 780px) 720px,
+                          (min-width: 680px) 592px,
+                          calc(94.44vw - 31px)
+                        `}
+                    />
+                  </div>
+                </div>
+              );
+            })
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="pagination"></div>
+  </div>
+
+  <div class="flex md:hidden w-full bg-light/75 sticky bottom-0 z-10 backdrop-blur-xl flex-col gap-4 px-4 pb-8 pt-2">
+    <div class="flex flex-col">
+      <span class="font-bold">Size</span>
+      <VariantSelector 
+        variants={products}
+      />
+    </div>
+    {products.map( (variant, index) => (
+      <AddToCartForm
+        client:load
+        index={index}
+        formClass={(index == 0)? 'active' : ''}
+        variantId={variant?.id}
+        variantQuantityAvailable={variant?.quantityAvailable}
+        variantAvailableForSale={variant?.availableForSale}
+      />
+    ))}
+  </div>
+</section>
+
+<section class="flex md:hidden flex-col gap-4 container">
+  <strong class="">MADE IN OUR CHICAGO STUDIO</strong>
+  <div class="w-full">
+    <Fragment set:html={description} />
+  </div>
+</section>
+
+<script>
+  import Swiper from 'swiper';
+  import { Pagination } from 'swiper/modules';
+  new Swiper('.swiper', {
+    modules: [Pagination],
+    slidesPerView: 1,
+    spaceBetween: 28,
+    loop: true,
+    pagination: {
+      el: ".pagination",
+      bulletClass: "pagination-bullet",
+      bulletActiveClass: "bullet-active",
+      clickable: true,
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 28,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 28, 
+      }
+    }
+  });
+</script>
+
+<style>
+  .swiper-slide {
+    @apply h-auto;
+  }
+</style>
+
+<style is:global>
+  .pagination {
+    @apply flex gap-2 py-4 items-center justify-center;
+  }
+
+  .pagination-bullet {
+    @apply bg-dark opacity-10 h-2 w-2 hover:cursor-pointer rounded-full;
+  }
+
+  .bullet-active {
+    @apply opacity-100 hover:cursor-default;
+  }
+</style>

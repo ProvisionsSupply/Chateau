@@ -25,6 +25,7 @@
     "nanostores": "^0.10.3",
     "posthog-js": "^1.157.2",
     "svelte": "^4.2.18",
+    "swiper": "^11.1.12",
     "zod": "^3.23.8"
   },
   "devDependencies": {
