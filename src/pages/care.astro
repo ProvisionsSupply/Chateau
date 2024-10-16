@@ -1,8 +1,59 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-const title = "Provisions";
+const title = "Care";
 ---
 
-<BaseLayout title={title}>
-  CARE
+<BaseLayout title={title} description="Provisions garment care instructions">
+  <section class="container text-dark py-32 flex flex-col gap-24">
+    <div class="items flex flex-col">
+      <h1>Care Instructions</h1>
+      <p>Please follow these instructions to care for your garments.</p>
+    </div>
+    <div class="items flex flex-col">
+      <h1>Garment - 01</h1>
+      <ul>
+        <li>Machine wash cold with like colors</li>
+        <li>Line dry</li>
+      </ul>
+    </div>
+    <div class="items flex flex-col">
+      <h1>Garment - 02</h1>
+      <ul>
+        <li>Machine wash cold with like colors</li>
+        <li>Line dry</li>
+      </ul>
+    </div>
+    <div class="items flex flex-col">
+      <h1>Garment - 03</h1>
+      <ul>
+        <li>Machine wash cold with like colors</li>
+        <li>Line dry</li>
+      </ul>
+    </div>
+    <div class="items flex flex-col">
+      <h1>Garment - 04</h1>
+      <ul>
+        <li>Machine wash cold with like colors</li>
+        <li>Line dry</li>
+      </ul>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  h1 {
+    @apply italic font-sans font-bold text-dark text-4xl;
+  }
+
+  .items p {
+    @apply text-dark font-sans mb-2 last:mb-0;
+  }
+
+  a {
+    @apply font-bold underline hover:opacity-75;
+  }
+
+  ul {
+    @apply font-bold list-disc list-inside ml-4;
+  }
+</style>

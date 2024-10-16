@@ -16,6 +16,10 @@ export interface Props {
   description: string
 }
 const { images, products, description } = Astro.props as Props;
+
+if (images.nodes.length < 4) {
+  images.nodes.push(images.nodes[0]);
+}
 ---
 
 <section class="relative pt-4 pb-0 md:py-12">
