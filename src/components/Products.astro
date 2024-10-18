@@ -2,6 +2,8 @@
 import { z } from "zod";
 import { ProductResult } from "../utils/schemas";
 import ProductCard from "./ProductCard.astro";
+import { Image } from 'astro:assets';
+import chi from '../img/shop/chicago-sky.jpg';
 
 const ProductsResult = z.array(ProductResult);
 export interface Props {
@@ -11,9 +13,16 @@ const { products } = Astro.props as Props;
 ---
 
 <section class="bg-light py-12">
-  <div class="container">
-    <div class="grid gap-8 md:grid-cols-2">
+  <div class="container flex flex-col gap-4">
+    <h1 class="font-mono italic font-bold text-dark text-2xl">ALL PRODUCTS</h1>
+    <div class="grid gap-8 grid-cols-2 md:grid-cols-3">
       {products.map((product) => <ProductCard product={product} />)}
+    </div>
+    <div class="mt-8 relative">
+      <Image src={chi} alt='' class='h-48 md:h-64 w-full object-cover object-top' />
+      <div class="absolute w-full h-full top-0 left-0 flex flex-col justify-center items-center text-center">
+        <strong class="text-4xl text-white italic drop-shadow-md">CHICAGO MADE CLOTHING</strong>
+      </div>
     </div>
   </div>
 </section>

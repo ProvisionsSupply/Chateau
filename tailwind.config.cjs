@@ -1,3 +1,5 @@
+import defaultTheme from 'tailwindcss/defaultTheme'
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
@@ -9,10 +11,13 @@ module.exports = {
         sm: '100%',
         md: '100%',
         lg: '100%',
-        xl: '1200px',
+        xl: '1400px',
       }
     },
     extend: {
+      fontFamily: {
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+      },
       colors: {
         light: "#F3F3F3",
         dark: "#2B2525"

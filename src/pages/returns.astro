@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const title = "Returns";
+---
+
+<BaseLayout title={title} description="Provisions Returns">
+  <section class="container text-dark py-32 flex flex-col gap-24">
+    <div class="flex flex-col">
+      <h1 class="italic font-sans font-bold text-dark text-4xl">Return Policy</h1>
+      <p class="text-dark font-sans">
+        At Provisions we stand by our products and want to make sure we're doing right by people.
+        <br><br>
+        If you're not happy with your purchase for whatever reason or need a different size
+        we will gladly return or exchange it for you. We offer a 30 day return/exchange policy on all of our garments, 
+        this starts when the garment was delivered to you. Please just reach out to us as described in the <a href="#return-process">Return Process</a> section.
+        <br><br>
+      </p>
+      <ul>
+        <li>Items must be unworn and be in their original condition/packaging</li>
+        <li>We will send you a return label once your claim has been approved</li>
+          <ul class="mb-0">
+            <li>Shipping cost back to us will be deducted from your return amount</li>
+          </ul>
+      </ul>
+    </div>
+
+    <div class="flex flex-col">
+      <h1 id="return-process" class="italic font-sans font-bold text-dark text-4xl">Return Process</h1>
+      <p class="text-dark font-sans">
+        If you'd like to start a return please email us at: <a href="mailto:info@provisions.supply">info@provisions.supply</a> with:
+        <br><br>
+      </p>
+      <ul class="mb-0">
+        <li>Your order number</li>
+          <ul>
+            <li>This can be found in your original order email sent by us</li>
+          </ul>
+
+        <li>A quick description of how we can help you</li>
+      </ul>
+      <p class="text-dark font-sans">
+        <br>
+        We're a small team so we will reach out as soon as we can. We strive to reach out within 24 hours of recieving emails.
+        <br><br>
+        If you can't find your order number please still reach out and we'll try to help you out!
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  a {
+    @apply font-bold underline hover:opacity-75;
+  }
+
+  ul {
+    @apply font-bold;
+  }
+
+  ul ul {
+    @apply ml-6 font-normal list-inside;
+  }
+</style>

@@ -1,0 +1,39 @@
+---
+import { getProductByHandle } from "./../../utils/shopify";
+import type { z } from "zod";
+import type { MoneyV2Result } from "../../utils/schemas";
+import { setCache } from "../../utils/cache";
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProductInfo from "../../components/product/ProductInfo.astro";
+import Money from "../../components/Money.svelte";
+
+const { handle } = Astro.params;
+const headers = Astro.request.headers;
+const ip = headers.get("x-vercel-forwarded-for") || Astro.clientAddress;
+const product = await getProductByHandle({ handle: handle || "", buyerIP: ip });
+
+if (!product) {
+  Astro.response.status = 404;
+}
+
+const firstVariant = product?.variants.nodes[0];
+const metaTitle = product?.seo.title?? product.title;
+const metaDes   = product?.seo.description?? 'Chicago Made Clothing';
+
+setCache.short(Astro);
+---
+
+<BaseLayout title={metaTitle} description={metaDes}>
+  <section class="pt-4 bg-light container flex flex-col md:flex-row justify-between">
+    <div class="flex flex-col">
+      <h1 class="italic font-bold text-dark text-2xl">GARMENT - {product?.title}</h1>
+      <strong><Money price={firstVariant?.price as z.infer<typeof MoneyV2Result>} /></strong>
+    </div>
+    <div class="flex flex-col justify-end">
+      <strong>ITEMS ARE MADE TO ORDER - LEAD TIME IS CURRENTLY 1 WEEK</strong>
+    </div>
+  </section>
+
+  <ProductInfo images={product.images} products={product?.variants.nodes} description={product?.descriptionHtml} />
+</BaseLayout>

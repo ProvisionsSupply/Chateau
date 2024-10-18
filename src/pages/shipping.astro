@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const title = "Shipping";
+---
+
+<BaseLayout title={title} description="Provisions Shipping">
+  <section class="container text-dark py-32 flex flex-col gap-24">
+    <div class="flex flex-col">
+      <h1 class="italic font-sans font-bold text-dark text-4xl">Domestic Shipping</h1>
+      <p class="text-dark font-sans">
+        We use <a href="https://www.usps.com/">USPS</a> for all of our domestic orders.
+        <br><br>
+      </p>
+      <ul>
+        <li>Shipping rates are calculated during checkout</li>
+      </ul>
+    </div>
+
+    <div class="flex flex-col">
+      <h1 class="italic font-sans font-bold text-dark text-4xl">International Shipping</h1>
+      <p class="text-dark font-sans">
+        International orders will be shipped with DHL.
+        <br><br>
+      </p>
+      <ul>
+        <li>Shipping rates are calculated during checkout</li>
+        <li>Orders placed outside the US will be subject to taxes and duties that depend on the destination of the parcel</li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  a {
+    @apply font-bold underline hover:opacity-75;
+  }
+
+  ul {
+    @apply font-bold;
+  }
+
+  ul ul {
+    @apply ml-6 font-normal list-inside;
+  }
+</style>

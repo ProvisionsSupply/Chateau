@@ -1,0 +1,31 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const title = "Contact";
+---
+
+<BaseLayout title={title} description="Contact Provisions">
+  <section class="container text-dark py-64 flex flex-col gap-24">
+    <div class="flex flex-col">
+      <h1 class="italic font-sans font-bold text-dark text-4xl">Contact Us</h1>
+      <p class="text-dark font-sans">
+        For any inquiry or if you just want to say hi. Please reach out to: <a href="mailto:info@provisions.supply">info@provisions.supply</a>
+        <br><br>
+        We're a small team so we will reach out as soon as we can. We strive to reach out within 24 hours.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  a {
+    @apply font-bold underline hover:opacity-75;
+  }
+
+  ul {
+    @apply font-bold;
+  }
+
+  ul ul {
+    @apply ml-6 font-normal list-inside;
+  }
+</style>

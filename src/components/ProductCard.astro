@@ -12,12 +12,12 @@ const { product } = Astro.props as Props;
 ---
 
 <a
-  href={`/products/${product?.handle}`}
-  class="group overflow-hidden"
+  href={`/shop/${product?.handle}`}
+  class="group hover:underline overflow-hidden"
 >
-  <div class="relative">
+  <div class="relative overflow-hidden">
     <ShopifyImage
-      classList=""
+      classList="group-hover:scale-105 transition duration-500"
       loading="eager"
       image={product?.featuredImage}
       sizes={`
@@ -27,13 +27,11 @@ const { product } = Astro.props as Props;
       (min-width: 780px) 348px,
       (min-width: 640px) 284px,
       calc(100vw - 48px)
-    `}
+      `}
     />
   </div>
-  <div class="flex justify-between py-4 text-sm font-mono">
-    <p class="group-hover:underline">{product?.title}</p>
-    <p class="font-bold">
-      <Money price={product?.variants.nodes[0].price} />
-    </p>
+  <div class="flex flex-col pt-2 text-sm">
+    <strong>Garment - {product?.title}</strong>
+    <strong><Money price={product?.variants.nodes[0].price} /></strong>
   </div>
 </a>

@@ -68,6 +68,10 @@ export const ProductResult = z
     title: z.string(),
     descriptionHtml: z.string(),
     handle: z.string(),
+    seo: z.object({
+      description: z.string().nullable(),
+      title: z.string().nullable()
+    }).nullable(),
     images: z.object({
       nodes: z.array(ImageResult),
     }),

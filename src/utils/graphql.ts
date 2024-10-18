@@ -54,6 +54,10 @@ fragment productFragment on Product {
   title
   descriptionHtml
   handle
+  seo {
+    description
+    title
+  }
   images (first: 10) {
     nodes {
       url

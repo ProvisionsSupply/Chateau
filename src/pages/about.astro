@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const title = "About";
+---
+
+<BaseLayout title={title} description="About Provisions">
+  <section class="container text-dark py-64 flex flex-col gap-24">
+    <div class="items flex flex-col">
+      <h1>About Us</h1>
+      <p>Built by two brothers; Christian and Brandon Gulyas. <strong>Provisions</strong> is a Chicago based clothing brand. </p>
+      <p>What started as a plan over a winter afternoon coffee quickly blossomed into a full-fledged clothing brand. We focus on clean, timeless and beautiful designs that don't break the bank.</p>
+      <p>We sew everything in house by hand in our studio right here in the city. This alows us to have complete control over our garments without compromising on fit or quality.</p>
+      <p><strong>Provisions</strong> is a labor of love, and we hope you love it as much as we do.</p>
+      <p>Thank you for checking us out. <br> <strong>Christian Gulyas</strong> & <strong>Brandon Gulyas</strong></p>
+    </div>
+
+  </section>
+</BaseLayout>
+
+<style>
+  h1 {
+    @apply italic font-sans font-bold text-dark text-4xl;
+  }
+
+  .items p {
+    @apply text-dark font-sans mb-2 last:mb-0 last:mt-8;
+  }
+
+  a {
+    @apply font-bold underline hover:opacity-75;
+  }
+
+  ul {
+    @apply font-bold;
+  }
+
+  ul ul {
+    @apply ml-6 font-normal list-inside;
+  }
+</style>

@@ -11,14 +11,6 @@ export interface Props {
 const { price, title, description } = Astro.props as Props;
 ---
 
-<span class="text-2xl font-bold text-dark font-mono">
-  {title}
-</span>
-
-<div class="text-xl font-bold font-mono text-dark">
-  <Money price={price} />
-</div>
-
-<div class="mt-4 text-base font-mono text-dark mb-4">
+<div class="mt-4 text-base text-dark mb-4">
   <Fragment set:html={description} />
 </div>
