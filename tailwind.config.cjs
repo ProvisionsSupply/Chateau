@@ -19,8 +19,8 @@ module.exports = {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        light: "#F3F3F3",
-        dark: "#2B2525"
+        light: "var(--light)",
+        dark: "var(--dark)"
       },
       keyframes: {
         shake: {

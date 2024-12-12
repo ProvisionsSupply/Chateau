@@ -2,7 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
+  :root {
+    --light: #f3f3f3;
+    --dark: #2b2525;
+  }
+
   html {
     @apply scroll-smooth;
   }

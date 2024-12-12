@@ -21,12 +21,12 @@ const { product } = Astro.props as Props;
       loading="eager"
       image={product?.featuredImage}
       sizes={`
-      (min-width: 1540px) 348px,
-      (min-width: 1280px) 284px,
-      (min-width: 1040px) 309px,
-      (min-width: 780px) 348px,
-      (min-width: 640px) 284px,
-      calc(100vw - 48px)
+        (min-width: 1540px) 1200px,
+        (min-width: 1280px) 1000px,
+        (min-width: 1040px) 800px,
+        (min-width: 780px) 700px,
+        (min-width: 680px) 500px,
+        (min-width: 400px) 400px,
       `}
     />
   </div>
