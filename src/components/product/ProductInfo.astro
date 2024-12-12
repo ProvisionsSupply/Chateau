@@ -2,9 +2,10 @@
 import 'swiper/css';
 import { z } from "zod";
 import { ImageResult } from "../../utils/schemas";
-import ShopifyImage from "./../ShopifyImage.svelte";
+import { Image } from 'astro:assets';
 import VariantSelector from "../../components/product/VariantSelector.astro";
 import AddToCartForm from "../../components/AddToCartForm.svelte";
+
 
 const ImagesResult = z.object({
   nodes: z.array(ImageResult),
@@ -58,19 +59,7 @@ if (images.nodes.length < 4) {
               return (
                 <div class="swiper-slide w-full">
                   <div class="h-full flex items-center justify-center">
-                    <ShopifyImage
-                      classList="object-cover object-center w-full h-full"
-                      loading="eager"
-                      image={image}
-                      sizes={`
-                        (min-width: 1540px) 1200px,
-                        (min-width: 1280px) 1000px,
-                        (min-width: 1040px) 800px,
-                        (min-width: 780px) 700px,
-                        (min-width: 680px) 500px,
-                        (min-width: 400px) 400px,
-                        `}
-                    />
+                    <Image class="object-cover object-center w-full h-full" width={image.width} height={image.height} src={image.url} alt="" />
                   </div>
                 </div>
               );
