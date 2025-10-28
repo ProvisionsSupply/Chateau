@@ -1,43 +1,26 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import '@fontsource-variable/inter';
+@import '@fontsource/jacquard-24';
 
+@theme {
+  --font-sans: 'Inter Variable', sans-serif;
+  --font-display: 'Jacquard 24', system-ui;
 
-@layer base {
-  :root {
-    --light: #f3f3f3;
-    --dark: #2b2525;
-  }
+  --animate-color: color 10s ease-in-out infinite;
 
-  html {
-    @apply scroll-smooth;
-  }
+  @keyframes color {
 
-  body {
-    @apply bg-light;
-  }
+    0%,
+    100% {
+      color: royalblue;
+    }
 
-  main {
-    @apply flex-1;
-  }
+    50% {
+      color: #e63946;
+    }
 
-  details > summary {
-    list-style: none;
-  }
-  details > summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .button {
-    @apply flex items-center justify-center;
-    @apply bg-dark rounded-sm;
-    @apply py-2 px-8 text-base font-bold text-light;
-    @apply transition hover:opacity-65;
-    @apply focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-1;
-    @apply disabled:cursor-not-allowed disabled:opacity-60;
-  }
-
-  .link {
-    @apply text-dark hover:underline hover:opacity-75 w-fit;
+    25% {
+      color: #191970;
+    }
   }
 }

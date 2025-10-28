@@ -1,10 +1,15 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Images from "../components/homepage/Images.astro";
+import Layout from "../layouts/Layout.astro";
 
 const title = "Provisions";
+const description = "Designed our way. Made in Chicago. For Everyone";
 ---
 
-<BaseLayout title={title}, description="Chicago made clothing.">
-  <Images />
-</BaseLayout>
+<Layout title={title} , description={description}>
+  <section class="w-dvw h-dvh flex flex-col justify-center items-center">
+    <div class="font-display text-7xl lg:text-9xl animate-color">
+      Provisions
+    </div>
+    <p class="">We're working on a redesign. Be right back!</p>
+  </section>
+</Layout>

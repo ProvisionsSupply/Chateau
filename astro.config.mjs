@@ -1,21 +1,15 @@
 import { defineConfig } from "astro/config";
-import vercel from "@astrojs/vercel/serverless";
-
-import tailwind from "@astrojs/tailwind";
-
-// https://astro.build/config
-import svelte from "@astrojs/svelte";
-
-// https://astro.build/config
 import alpinejs from "@astrojs/alpinejs";
+import vercel from "@astrojs/vercel";
 
-// https://astro.build/config
+import tailwindcss from "@tailwindcss/vite";
+
 export default defineConfig({
   output: "server",
+  integrations: [alpinejs()],
   adapter: vercel(),
-  integrations: [tailwind({
-    config: {
-      applyBaseStyles: false
-    }
-  }), svelte(), alpinejs()]
+
+  vite: {
+    plugins: [tailwindcss()]
+  }
 });
